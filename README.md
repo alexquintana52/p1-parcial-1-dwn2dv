@@ -1,4 +1,7 @@
 # Parcial 1
+## Contribuyentes
+
+- Quintana Alex
 
 ## Consignas de entrega
 

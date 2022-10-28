@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * APELLIDO, NOMBRE | APELLIDO, NOMBRE
+ * Quintana Alex
  */
 
 // Ejemplo de la estructura de un disco:
@@ -37,12 +37,97 @@
 //     ],
 // };
 
-// Discos:
+class Discos {
+    constructor(nombre, autor, codigo){
+        this.nombre = nombre;
+        this.autor = autor;
+        this.codigo = codigo;
+    };
+};
+
+class Pistas {
+    constructor(nombre, duracion){
+        this.nombre = nombre;
+        this.duracion = duracion;
+    };
+};
+
+// Array Discos y Pistas:
 let discos = [];
+let pistas = [];
 
 // Función Cargar:
 const Cargar = () => {
-    // Cositas:
+
+    // Función que valida el nombre
+    const validarNombre = () => {
+
+        let nombreDisco = prompt("Ingrese el nombre del disco");
+
+        while(nombreDisco.length === 0){
+            alert("Por favor complete el campo correctamente.");
+            nombreDisco = prompt("Ingrese el nombre del disco nuevamente");
+        }
+
+        return nombreDisco;
+    };
+
+    // Función que valida el autor
+    const validarAutor = () => {
+
+        let nombreAutor = prompt("Ingrese el autor del disco");
+
+        while(nombreAutor.length === 0){
+            alert("Por favor complete el campo correctamente.");
+            nombreAutor = prompt("Ingrese el autor del disco nuevamente");
+        };
+
+        return nombreAutor;
+    };
+
+    // Función que valida el código
+    const validarCodigo = () => {
+
+        let codigoDisco = parseInt(prompt("Ingrese el código único del disco (1 a 999)"));
+
+        while(isNaN(codigoDisco) || codigoDisco < 1 || codigoDisco > 999 ){
+            alert("Por favor complete el campo correctamente con un número del 1 al 999")
+            codigoDisco = prompt("Ingrese un código único para el disco nuevamente (1 a 999)");
+        };
+
+        return codigoDisco;
+    };
+
+    // Función que valida la pista
+    const validarPista = () => {
+
+        let nombrePista = prompt("Ingrese el nombre de la pista del disco");
+
+        while(nombrePista.length === 0){
+            alert("Por favor complete el campo correctamente.")
+            nombrePista = prompt("Ingrese el nombre de la pista nuevamente");
+        }
+
+        return nombrePista;
+    };
+
+    // Función que valida la duración de la pista
+    const validarDuracion = () => {
+
+        let duracionPista = parseInt(prompt("Ingrese la duración de la pista (entre 0 y 7200 segundos)"));
+
+        while(isNaN(duracionPista) || duracionPista < 0 || duracionPista > 7200){
+            alert("Por favor complete el campo correctamente");
+            duracionPista = parseInt(prompt("Ingrese la duración de la pista nuevamente (entre 0 y 7200 segundos)."));
+        }
+
+        alert("Datos agregados correctamente");
+
+        return duracionPista;
+    };
+
+    
+
 };
 
 // Función Mostrar:
