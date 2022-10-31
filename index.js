@@ -37,14 +37,17 @@
 //     ],
 // };
 
+// Clase Discos
 class Discos {
-    constructor(nombre, autor, codigo){
+    constructor(nombre, autor, codigo, pistas){
         this.nombre = nombre;
         this.autor = autor;
         this.codigo = codigo;
+        this.pistas = pistas = [];
     };
 };
 
+// Clase Pistas
 class Pistas {
     constructor(nombre, duracion){
         this.nombre = nombre;
@@ -54,7 +57,7 @@ class Pistas {
 
 // Array Discos y Pistas:
 let discos = [];
-let pistas = [];
+let codigos = [];
 
 // Función Cargar:
 const Cargar = () => {
@@ -86,13 +89,16 @@ const Cargar = () => {
     };
 
     // Función que valida el código
+
+    let codigoDisco;
+
     const validarCodigo = () => {
 
-        let codigoDisco = parseInt(prompt("Ingrese el código único del disco (1 a 999)"));
+        codigoDisco = parseInt(prompt("Ingrese el código único del disco (1 a 999)"));
 
-        while(isNaN(codigoDisco) || codigoDisco < 1 || codigoDisco > 999 ){
-            alert("Por favor complete el campo correctamente con un número del 1 al 999")
-            codigoDisco = prompt("Ingrese un código único para el disco nuevamente (1 a 999)");
+        while(isNaN(codigoDisco) || codigoDisco < 1 || codigoDisco > 999 || codigoDisco == codigos ){
+            alert("Error al proporcionar el código del disco");
+            codigoDisco = parseInt(prompt("Puede que haya ingresado un código que ya existe, intente nuevamente (1 a 999)"));
         };
 
         return codigoDisco;
@@ -125,20 +131,86 @@ const Cargar = () => {
 
         return duracionPista;
     };
-
     
+    let nuevoDisco = new Discos();
+    nuevoDisco.nombre = validarNombre();
+    nuevoDisco.autor = validarAutor();
+    nuevoDisco.codigo = validarCodigo();
+
+    discos.push(nuevoDisco);
+    codigos.push(nuevoDisco.codigo);
+
+    const crearPista = () => {
+        let nuevaPista = new Pistas();
+        nuevaPista.nombre = validarPista();
+        nuevaPista.duracion = validarDuracion();
+
+        return nuevaPista;
+    }
+
+    do {
+        nuevoDisco.pistas.push(crearPista());
+    } while (confirm("¿Desea agregar otra pista?"));
+
+    console.log(discos);
+    console.log(codigos);
 
 };
+
+
+
 
 // Función Mostrar:
 const Mostrar = () => {
     // Variable para ir armando la cadena:
     let html = '';
+    html += `
+        <p>Contador de discos: ${discos.length}</p>
+    `;
 
-    // Cositas:
+    for(let disco of discos) {
+
+        html += `
+            <h3>Disco</h3>
+            <ul>
+                <li>Nombre: ${disco.nombre}</li>
+                <li>Autor: ${disco.autor}</li>
+                <li>Código: ${disco.codigo}</li>
+            </ul>
+        `;
+
+        for(let pista of disco.pistas) {
+
+            if(pista.duracion > 180) {
+
+                html += `
+                    <h3>Pista</h3>
+                    <ul>
+                        <li>Nombre: ${pista.nombre}</li>
+                        <li>Duración: <span style="color: red;">${pista.duracion}seg</span></li>
+                    </ul>
+                `;
+
+            } else {
+
+                html += `
+                    <h3>Pista</h3>
+                    <ul>
+                        <li>Nombre: ${pista.nombre}</li>
+                        <li>Duración: ${pista.duracion}</li>
+                    </ul>
+                `;
+
+            };
+
+        };
+
+        html += `
+        <p style="margin-bottom: 2em;">Contador de pistas: ${disco.pistas.length}</p>
+        `
+
+    };
 
     // Si modificaste el nombre de la variable para ir armando la cadena, también hacelo acá:
     document.getElementById('info').innerHTML = html; // <--- ahí es acá
 };
-
-// Todas las funciones que necesites:
