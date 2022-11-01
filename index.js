@@ -206,8 +206,7 @@ const Mostrar = () => {
         };
 
         html += `
-        <p style="margin-bottom: 2em;">Contador de pistas: ${disco.pistas.length}</p>
-        `
+        <p>Contador de pistas: ${disco.pistas.length}</p>`;
 
     };
 

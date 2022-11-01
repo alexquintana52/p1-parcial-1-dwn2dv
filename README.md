@@ -57,7 +57,7 @@ Cualquier faltante de los requisitos que se presentan a continuación, hará que
 Entre las entregas que cumplan el punto anterior, incrementarán su nota los desarrollos que:
 
 - Usen al menos otras dos (2) funciones a lo largo de todo el proceso:
-  - Deben recibir argumentos y/o devolver valores para que cuenten como funciones para sumar puntos.
+  - Deben recibir argumentos y/o devolver valores para que cuenten como funciones para sumar puntos. 
 - Muestren un mensaje (con el método alert) ante cada error cometido (haciendo referencia a las validaciones).
 - Informen cada vez que se muestran los discos, cuántos se llevan cargados (contador).
 - Informen por cada disco:
