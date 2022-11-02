@@ -152,9 +152,6 @@ const Cargar = () => {
         nuevoDisco.pistas.push(crearPista());
     } while (confirm("¿Desea agregar otra pista?"));
 
-    console.log(discos);
-    console.log(codigos);
-
 };
 
 
